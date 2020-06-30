@@ -23,4 +23,6 @@ public class BeautyApplication extends SpringBootServletInitializer {
         return application.sources(BeautyApplication.class);
     }
 
+
+
 }
