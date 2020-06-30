@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
 @SpringBootApplication
 @MapperScan
 public class BeautyApplication extends SpringBootServletInitializer {
@@ -23,6 +26,8 @@ public class BeautyApplication extends SpringBootServletInitializer {
         return application.sources(BeautyApplication.class);
     }
 
-
-
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+    }
 }
