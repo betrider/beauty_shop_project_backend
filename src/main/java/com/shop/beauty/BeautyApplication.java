@@ -7,12 +7,20 @@ import org.mybatis.spring.annotation.MapperScans;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 @MapperScan
-public class BeautyApplication {
+public class BeautyApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(BeautyApplication.class, args);
     }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(BeautyApplication.class);
+    }
+
 }
