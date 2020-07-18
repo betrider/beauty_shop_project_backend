@@ -8,4 +8,7 @@ import java.util.List;
 @Repository*/
 public interface ScheduleMapper {
     List<ScheduleModel> selectAllSchedule() throws Exception;
+    void insertSchedule(ScheduleModel model) throws Exception;
+    void updateSchedule(ScheduleModel model) throws Exception;
+    void deleteSchedule(int id) throws Exception;
 }

@@ -16,4 +16,16 @@ public class ScheduleService {
     public List<ScheduleModel> getAllSchedule() throws Exception {
         return (List<ScheduleModel>) scheduleMapper.selectAllSchedule();
     }
+
+    public void insertSchedule(ScheduleModel model) throws Exception {
+        scheduleMapper.insertSchedule(model);
+    }
+
+    public void updateSchedule(ScheduleModel model) throws Exception {
+        scheduleMapper.updateSchedule(model);
+    }
+
+    public void deleteSchedule(int id) throws Exception {
+        scheduleMapper.deleteSchedule(id);
+    }
 }

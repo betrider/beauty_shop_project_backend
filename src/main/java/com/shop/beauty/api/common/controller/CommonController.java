@@ -5,6 +5,8 @@ import com.shop.beauty.api.common.model.ScheduleModel;
 import com.shop.beauty.api.common.service.CityService;
 import com.shop.beauty.api.common.service.ScheduleService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -37,54 +39,33 @@ public class CommonController {
         return hMap;
     }
 
-    @GetMapping("/api/test11")
-    public HashMap test11() throws Exception {
+    @GetMapping("/api/schedule/get")
+    public ArrayList searchSchedule() throws Exception {
 
+        ArrayList arrList = new ArrayList();
         HashMap hMap =new HashMap();
 
         List<ScheduleModel> list =  scheduleService.getAllSchedule();
-
         for(ScheduleModel schedule : list){
+            hMap = new HashMap();
             hMap.put("id",schedule.getId());
             hMap.put("title",schedule.getTitle());
-            hMap.put("startdate",schedule.getStartdate());
-            hMap.put("enddate",schedule.getEnddate());
-            hMap.put("allday",schedule.getAllday());
-            hMap.put("priorityid",schedule.getPriorityid());
-            hMap.put("rrule",schedule.getRrule());
+            hMap.put("startDate",schedule.getStartdate());
+            hMap.put("endDate",schedule.getEnddate());
+            hMap.put("allDay",Boolean.parseBoolean(schedule.getAllday()));
+            hMap.put("priorityId",schedule.getPriorityid());
+            hMap.put("rRule",schedule.getRrule());
             hMap.put("notes",schedule.getNotes());
-            hMap.put("exdate",schedule.getExdate());
+            hMap.put("exDate",schedule.getExdate());
+            arrList.add(hMap);
         }
 
-        return hMap;
+        return arrList;
     }
 
-    @GetMapping("/api/schedule/get")
-    public ArrayList test2() throws Exception {
-
-        ArrayList aa = new ArrayList();
-
-        HashMap hMap =new HashMap();
-        hMap.put("title","말티즈 미용11");
-        hMap.put("priorityId",1);
-        //hMap.put("startDate","20200613100000");
-        //hMap.put("endDate","20200613130000");
-        hMap.put("startDate","Mon Jul 14 2020 09:00:00 GMT+0900 (대한민국 표준시)");
-        hMap.put("endDate","Mon Jul 14 2020 09:30:00 GMT+0900 (대한민국 표준시)");
-        hMap.put("id",1);
-        aa.add(hMap);
-
-        hMap =new HashMap();
-        hMap.put("title","포메라니안 미용22");
-        hMap.put("priorityId",2);
-        //hMap.put("startDate","20200613100000");
-        //hMap.put("endDate","20200613130000");
-        hMap.put("startDate","Mon Jul 14 2020 09:00:00 GMT+0900 (대한민국 표준시)");
-        hMap.put("endDate","Mon Jul 14 2020 09:30:00 GMT+0900 (대한민국 표준시)");
-        hMap.put("id",2);
-        aa.add(hMap);
-
-        return aa;
+    @RequestMapping("/api/schedule/delete/id/{id}")
+    public void deleteSchedule(@PathVariable int id) throws Exception {
+        scheduleService.deleteSchedule(id);
     }
 
 }
