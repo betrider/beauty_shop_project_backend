@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 public class ScheduleModel {
     private int id;
     private String title;
-    private String startdate;
-    private String enddate;
-    private String allday;
-    private int priorityid;
-    private String rrule;
+    private String startDate;
+    private String endDate;
+    private String allDay;
+    private int priorityId;
+    private String rRule;
     private String notes;
-    private String exdate;
+    private String exDate;
 }

@@ -8,15 +8,16 @@
         SELECT
             id,
             title,
-            startdate ,
-            enddate ,
-            allday ,
-            priorityid ,
-            rrule,
-            notes,
-            exdate
+            startdate as startDate,
+            enddate as endDate,
+            allday as allDay,
+            priorityid as priorityId,
+            rrule as rRule,
+            notes as notes,
+            exdate as exDate
         FROM
             com_schedule
+        ORDER BY id
     </select>
 
     <insert id="insertSchedule" parameterType="com.shop.beauty.api.common.model.ScheduleModel">
@@ -26,30 +27,33 @@
                 startdate,
                 enddate,
                 allday,
-                priorityid
+                priorityid,
+                rrule,
+                notes,
+                exdate
         )values(
                 #{id},
                 #{title},
-                #{startdate},
-                #{enddate},
-                #{allday},
-                #{priorityid},
-                #{rrule},
+                #{startDate},
+                #{endDate},
+                #{allDay},
+                #{priorityId},
+                #{rRule},
                 #{notes},
-                #{exdate}
+                #{exDate}
         )
     </insert>
 
     <update id="updateSchedule" parameterType="com.shop.beauty.api.common.model.ScheduleModel">
         UPDATE com_schedule
            SET title = #{title}
-             , startdate = #{startdate}
-             , enddate = #{enddate}
-             , allday = #{allday}
-             , priorityid = #{priorityid}
-             , rrule = #{rrule}
+             , startdate = #{startDate}
+             , enddate = #{endDate}
+             , allday = #{allDay}
+             , priorityid = #{priorityId}
+             , rrule = #{rRule}
              , notes = #{notes}
-             , exdate = #{exdate}
+             , exdate = #{exDate}
          WHERE id = #{id}
     </update>
 

@@ -4,10 +4,7 @@ import com.shop.beauty.api.common.model.CityModel;
 import com.shop.beauty.api.common.model.ScheduleModel;
 import com.shop.beauty.api.common.service.CityService;
 import com.shop.beauty.api.common.service.ScheduleService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -50,13 +47,13 @@ public class CommonController {
             hMap = new HashMap();
             hMap.put("id",schedule.getId());
             hMap.put("title",schedule.getTitle());
-            hMap.put("startDate",schedule.getStartdate());
-            hMap.put("endDate",schedule.getEnddate());
-            hMap.put("allDay",Boolean.parseBoolean(schedule.getAllday()));
-            hMap.put("priorityId",schedule.getPriorityid());
-            hMap.put("rRule",schedule.getRrule());
+            hMap.put("startDate",schedule.getStartDate());
+            hMap.put("endDate",schedule.getEndDate());
+            hMap.put("allDay",Boolean.parseBoolean(schedule.getAllDay()));
+            hMap.put("priorityId",schedule.getPriorityId());
+            hMap.put("rRule",schedule.getRRule());
             hMap.put("notes",schedule.getNotes());
-            hMap.put("exDate",schedule.getExdate());
+            hMap.put("exDate",schedule.getExDate());
             arrList.add(hMap);
         }
 
@@ -68,4 +65,15 @@ public class CommonController {
         scheduleService.deleteSchedule(id);
     }
 
+    @PostMapping("/api/schedule/post")
+    public String insertSchedule(@RequestBody ScheduleModel model) throws Exception {
+        scheduleService.insertSchedule(model);
+        return "insertSchedule";
+    }
+
+    @PostMapping("/api/schedule/put")
+    public String updateSchedule(@RequestBody ScheduleModel model) throws Exception {
+        scheduleService.updateSchedule(model);
+        return "updateSchedule";
+    }
 }
